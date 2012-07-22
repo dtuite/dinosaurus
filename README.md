@@ -18,9 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-require "dnosaurus"
+Add your api key using the `configure` method.
 
-results = Dinosaurus.lookup('word')
+    Dinosaurus.configure do |config|
+      config.api_key = 'djksfhjk'
+    end
+
+Now, lookup words in the Thesaurus:
+
+    require "dinosaurus"
+
+    results = Dinosaurus.lookup('word')
 
 ## Contributing
 
