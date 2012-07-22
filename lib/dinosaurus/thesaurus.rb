@@ -1,5 +1,6 @@
 require "httparty"
 require "json"
+require "uri"
 
 module Dinosaurus
   class MissingApiKeyError < StandardError; end
@@ -30,7 +31,7 @@ module Dinosaurus
     def self.url_for(word)
       key = Dinosaurus.configuration.api_key
       raise MissingApiKeyError unless key
-      "/api/2/" + key + '/' + word + '/json'
+      URI.encode("/api/2/" + key + '/' + word + '/json')
     end
   end
 end

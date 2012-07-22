@@ -31,6 +31,12 @@ describe Dinosaurus::Thesaurus do
     end
   end
 
+  it "should handle two words" do
+    VCR.use_cassette('meal_people') do
+      subject.lookup('meal people')[:results].should == []
+    end
+  end
+
   it "should raise up if missing api key" do
     Dinosaurus.configuration.stub(:api_key)
     expect do
