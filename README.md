@@ -1,6 +1,6 @@
 # Dinosaurus
 
-TODO: Write a gem description
+Ruby wrapper for the [Big Huge Labs Thesaurus](http://words.bighugelabs.com/) API.
 
 ## Installation
 
@@ -18,7 +18,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+require "dnosaurus"
+
+results = Dinosaurus.lookup('word')
 
 ## Contributing
 

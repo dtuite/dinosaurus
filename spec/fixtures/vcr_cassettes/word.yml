@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://words.bighugelabs.com/api/2/<API_KEY>/word/json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.1.19
+      Date:
+      - Sun, 22 Jul 2012 17:29:10 GMT
+      Content-Type:
+      - text/javascript
+      Content-Length:
+      - '736'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.2
+      Set-Cookie:
+      - PHPSESSID=k1cu7dsr9cdlrd6utgpr5efel2; path=/; domain=words.bighugelabs.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+    body:
+      encoding: US-ASCII
+      string: ! '{"noun":{"syn":["news","intelligence","tidings","discussion","give-and-take","parole","word
+        of honor","Son","Word","Logos","password","watchword","countersign","Bible","Christian
+        Bible","Book","Good Book","Holy Scripture","Holy Writ","Scripture","Word of
+        God","arcanum","computer memory unit","hypostasis","hypostasis of Christ","info","information","language","language
+        unit","linguistic unit","oral communication","order","positive identification","promise","religious
+        text","religious writing","sacred text","sacred writing","secret","speech","speech
+        communication","spoken communication","spoken language","statement","voice
+        communication"]},"verb":{"syn":["give voice","formulate","phrase","articulate","evince","express","show"]}}'
+    http_version: 
+  recorded_at: Sun, 22 Jul 2012 17:29:10 GMT
+recorded_with: VCR 2.2.0
