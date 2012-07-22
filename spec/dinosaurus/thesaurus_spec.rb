@@ -24,4 +24,11 @@ describe Dinosaurus::Thesaurus do
       subject.lookup('word')
     end
   end
+
+  it "should raise up if missing api key" do
+    Dinosaurus.configuration.stub(:api_key)
+    expect do
+      subject.lookup('word')
+    end.to raise_error(Dinosaurus::MissingApiKeyError)
+  end
 end
