@@ -25,6 +25,12 @@ describe Dinosaurus::Thesaurus do
     end
   end
 
+  it "should return [] for nonsense words" do
+    VCR.use_cassette('nonsense') do
+      subject.lookup('hsdfkjhsf')[:results].should == []
+    end
+  end
+
   it "should raise up if missing api key" do
     Dinosaurus.configuration.stub(:api_key)
     expect do

@@ -15,6 +15,9 @@ module Dinosaurus
 
       if res.code == 200
         { text: word, results: JSON.parse(res.body) }
+      # Word does not exist.
+      elsif res.code == 404
+        { text: word, results: [] }
       else
         warning = "DINOSAURUS_WARNING: #{res.code}. WORD: #{word}."
         Logging.logger.warn(warning)
