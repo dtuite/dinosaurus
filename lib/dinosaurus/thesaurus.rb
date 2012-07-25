@@ -10,6 +10,17 @@ module Dinosaurus
     base_uri "words.bighugelabs.com"
     format :json
 
+    def self.synonyms_of(word)
+      lookup = lookup(word)
+
+      synonyms = []
+      lookup[:results].each do |part_of_speech, types|
+        synonyms += types['syn'] if types['syn']
+        synonyms += types['sim'] if types['sim']
+        synonyms += types['rel'] if types['rel']
+      end
+      synonyms
+    end
 
     def self.lookup(word)
       res = get(url_for(word))

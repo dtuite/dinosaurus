@@ -3,6 +3,18 @@ require "spec_helper"
 describe Dinosaurus::Thesaurus do
   subject { Dinosaurus::Thesaurus }
 
+  describe "synonyms_of" do
+    it "should return synonyms" do
+      VCR.use_cassette('normal') do
+        results = subject.synonyms_of('normal')
+        # Should include similar and related.
+        results.should include(*%w[sane convention average])
+        # Should not include antynoms.
+        results.should_not include(*%w[abnormal])
+      end
+    end
+  end
+
   it "should return results" do
     VCR.use_cassette('word') do
       results = subject.lookup('word')[:results]
