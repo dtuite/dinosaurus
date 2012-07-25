@@ -1,6 +1,7 @@
 require "httparty"
 require "json"
 require "uri"
+require "active_support/core_ext/object/blank"
 
 module Dinosaurus
   class MissingApiKeyError < StandardError; end
@@ -11,6 +12,8 @@ module Dinosaurus
     format :json
 
     def self.synonyms_of(word)
+      # No-op if the word is blank.
+      return [] if word.blank?
       lookup = lookup(word)
 
       synonyms = []
@@ -23,6 +26,7 @@ module Dinosaurus
     end
 
     def self.lookup(word)
+      return { text: word, results: [] } if word.blank?
       res = get(url_for(word))
 
       if res.code == 200

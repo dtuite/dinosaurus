@@ -13,6 +13,10 @@ describe Dinosaurus::Thesaurus do
         results.should_not include(*%w[abnormal])
       end
     end
+
+    it "should return [] if the word is blank" do
+      subject.synonyms_of('').should == []
+    end
   end
 
   it "should return results" do
@@ -25,7 +29,6 @@ describe Dinosaurus::Thesaurus do
   it "should return related terms" do
     VCR.use_cassette('normal') do
       results = subject.lookup('normal')[:results]
-      p results
       results['adjective']['rel'].should include('sane')
     end
   end
