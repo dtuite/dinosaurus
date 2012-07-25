@@ -10,6 +10,14 @@ describe Dinosaurus::Thesaurus do
     end
   end
 
+  it "should return related terms" do
+    VCR.use_cassette('normal') do
+      results = subject.lookup('normal')[:results]
+      p results
+      results['adjective']['rel'].should include('sane')
+    end
+  end
+
   it "should return the lookup word" do
     VCR.use_cassette('word') do
       subject.lookup('word')[:text].should == 'word'
