@@ -3,39 +3,10 @@ require "spec_helper"
 describe Dinosaurus::Thesaurus do
   subject { Dinosaurus::Thesaurus }
 
-  describe "synonyms_of" do
-    it "should return synonyms" do
-      VCR.use_cassette('normal') do
-        results = subject.synonyms_of('normal')
-        # Should include similar and related.
-        results.should include(*%w[sane convention average])
-        # Should not include antynoms.
-        results.should_not include(*%w[abnormal])
-      end
-    end
-
-    it "should return [] if the word is blank" do
-      subject.synonyms_of('').should == []
-    end
-  end
-
   it "should return results" do
     VCR.use_cassette('word') do
-      results = subject.lookup('word')[:results]
-      results["noun"]["syn"].should include("news")
-    end
-  end
-
-  it "should return related terms" do
-    VCR.use_cassette('normal') do
-      results = subject.lookup('normal')[:results]
-      results['adjective']['rel'].should include('sane')
-    end
-  end
-
-  it "should return the lookup word" do
-    VCR.use_cassette('word') do
-      subject.lookup('word')[:text].should == 'word'
+      results = subject.lookup('word')
+      results.should be_instance_of(Dinosaurus::Results)
     end
   end
 
@@ -48,15 +19,15 @@ describe Dinosaurus::Thesaurus do
     end
   end
 
-  it "should return [] for nonsense words" do
+  it "should return {} for nonsense words" do
     VCR.use_cassette('nonsense') do
-      subject.lookup('hsdfkjhsf')[:results].should == []
+      subject.lookup('hsdfkjhsf').should == {}
     end
   end
 
   it "should handle two words" do
     VCR.use_cassette('meal_people') do
-      subject.lookup('meal people')[:results].should == []
+      subject.lookup('meal people').should == {}
     end
   end
 
@@ -66,4 +37,6 @@ describe Dinosaurus::Thesaurus do
       subject.lookup('word')
     end.to raise_error(Dinosaurus::MissingApiKeyError)
   end
+
+  it "should raise if the server 500"
 end
