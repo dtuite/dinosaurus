@@ -5,39 +5,26 @@ require "active_support/core_ext/object/blank"
 
 module Dinosaurus
   class MissingApiKeyError < StandardError; end
+  class RemoteServiceError < StandardError; end
 
   class Thesaurus
     include HTTParty
     base_uri "words.bighugelabs.com"
     format :json
 
-    def self.synonyms_of(word)
-      # No-op if the word is blank.
-      return [] if word.blank?
-      lookup = lookup(word)
-
-      synonyms = []
-      lookup[:results].each do |part_of_speech, types|
-        synonyms += types['syn'] if types['syn']
-        synonyms += types['sim'] if types['sim']
-        synonyms += types['rel'] if types['rel']
-      end
-      synonyms
-    end
-
     def self.lookup(word)
-      return { text: word, results: [] } if word.blank?
+      return Dinosaurus::Results.new if word.blank?
       res = get(url_for(word))
 
       if res.code == 200
-        { text: word, results: JSON.parse(res.body) }
+        json = JSON.parse(res.body)
+        Dinosaurus::Results.new(json)
       # Word does not exist.
       elsif res.code == 404
-        { text: word, results: [] }
+        Dinosaurus::Results.new
       else
         warning = "DINOSAURUS_WARNING: #{res.code}. WORD: #{word}."
         Logging.logger.warn(warning)
-        { text: word }
       end
     end
 
