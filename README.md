@@ -1,4 +1,4 @@
-# Dinosaurus
+# Dinosaurus [![Build Status](https://secure.travis-ci.org/dtuite/dinosaurus.png?branch=master)](http://travis-ci.org/dtuite/dinosaurus)
 
 Ruby wrapper for the [Big Huge Labs Thesaurus](http://words.bighugelabs.com/) API.
 
