@@ -38,11 +38,11 @@ The 'results' object is a hash with some special accessors added.
 
     # You can use it like a normal hash:
     results['noun']
-    # => { 'syn' => [..., ..., ...], 'ant' => [..., ...]
+    # => { 'syn' => [..., ..., ...], 'ant' => [..., ...] }
 
     # Or you can access it with symbols.
     results[:noun]
-    # => { 'syn' => [..., ..., ...], 'ant' => [..., ...]
+    # => { 'syn' => [..., ..., ...], 'ant' => [..., ...] }
 
     # Or you can take advantage of the special accesor methods. The
     # methods provided are
@@ -63,10 +63,14 @@ Each method returns an array.
     Dinosaurus.related_to('word')
     Dinosaurus.similar_to('word')
 
+
+Slightly more information can be found on the [RubyDocs](http://rubydoc.info/github/dtuite/dinosaurus/master/frames).
+
+
 ## Contributing
 
 There is a public [Trello development board](https://trello.com/board/dinosaurus/50128d79aaa25ad30857e434) for the project
-which lists ideas and todos. THat might be a good place to start if you would like to contribute.
+which lists ideas and todos. That might be a good place to start if you would like to contribute.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
