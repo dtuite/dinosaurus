@@ -59,7 +59,7 @@ Certain convenience methods are provided on the top level namespace.
 Each method returns an array.
 
     Dinosaurus.synonyms_of('word')
-    Dinosaurus.anyonyms_of('word')
+    Dinosaurus.antonyms_of('word')
     Dinosaurus.related_to('word')
     Dinosaurus.similar_to('word')
 
