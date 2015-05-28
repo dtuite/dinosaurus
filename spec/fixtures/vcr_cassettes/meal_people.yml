@@ -6,16 +6,22 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ''
-    headers: {}
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 404
       message: Not Found
     headers:
       Server:
-      - nginx/1.1.19
+      - nginx/1.4.6 (Ubuntu)
       Date:
-      - Sun, 22 Jul 2012 23:06:07 GMT
+      - Thu, 28 May 2015 10:27:27 GMT
       Content-Type:
       - text/html
       Content-Length:
@@ -23,18 +29,20 @@ http_interactions:
       Connection:
       - keep-alive
       X-Powered-By:
-      - PHP/5.3.10-1ubuntu3.2
+      - PHP/5.5.9-1ubuntu4.9
       Set-Cookie:
-      - PHPSESSID=07bn2cohasfbffavd8brgf7m52; path=/; domain=words.bighugelabs.com
+      - PHPSESSID=uj74tu3a6rqfova6b01sl0c5l7; path=/; domain=words.bighugelabs.com
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
       - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
       Pragma:
       - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Sun, 22 Jul 2012 23:06:07 GMT
-recorded_with: VCR 2.2.0
+  recorded_at: Thu, 28 May 2015 10:27:27 GMT
+recorded_with: VCR 2.9.3
