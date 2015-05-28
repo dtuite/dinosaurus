@@ -1,40 +1,35 @@
 require "spec_helper"
 
 describe Dinosaurus::Thesaurus do
-  subject { Dinosaurus::Thesaurus }
-
   it "should return results" do
     VCR.use_cassette('word') do
-      results = subject.lookup('word')
-      results.should be_instance_of(Dinosaurus::Results)
+      expect(described_class.lookup('word')).to be_instance_of(Dinosaurus::Results)
     end
   end
 
   it "should log errors" do
-    subject.stub(:get) { stub(code: 500) }
-    Logging.logger.should_receive(:warn)
-
-    VCR.use_cassette('word') do
-      subject.lookup('word')
-    end
+    allow(described_class).to receive(:get).and_return(double(code: 500))
+    allow(Logging.logger).to receive(:warn)
+    VCR.use_cassette('word') { described_class.lookup('word') }
+    expect(Logging.logger).to have_received(:warn)
   end
 
   it "should return {} for nonsense words" do
     VCR.use_cassette('nonsense') do
-      subject.lookup('hsdfkjhsf').should == {}
+      expect(described_class.lookup('hsdfkjhsf')).to eq({})
     end
   end
 
   it "should handle two words" do
     VCR.use_cassette('meal_people') do
-      subject.lookup('meal people').should == {}
+      expect(described_class.lookup('meal people')).to eq({})
     end
   end
 
   it "should raise up if missing api key" do
-    Dinosaurus.configuration.stub(:api_key)
+    allow(Dinosaurus.configuration).to receive(:api_key)
     expect do
-      subject.lookup('word')
+      described_class.lookup('word')
     end.to raise_error(Dinosaurus::MissingApiKeyError)
   end
 

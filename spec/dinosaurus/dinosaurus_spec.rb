@@ -2,35 +2,37 @@ require "spec_helper"
 
 describe Dinosaurus do
   let(:res) {  Dinosaurus::Results.new  }
-  before do
-    Dinosaurus.stub(:lookup) { res }
-  end
+  before { allow(Dinosaurus).to receive(:lookup).and_return(res) }
 
-  describe "synonyms_of" do
+  describe "#synonyms_of" do
     it "should return synonyms" do
-      res.should_receive(:synonyms)
+      allow(res).to receive(:synonyms)
       Dinosaurus.synonyms_of('normal')
+      expect(res).to have_received(:synonyms)
     end
   end
 
-  describe "antonyms_of" do
+  describe "#antonyms_of" do
     it "should return antonyms" do
-      res.should_receive(:antonyms)
+      allow(res).to receive(:antonyms)
       Dinosaurus.antonyms_of('normal')
+      expect(res).to have_received(:antonyms)
     end
   end
 
-  describe "related_to" do
+  describe "#related_to" do
     it "should return related terms" do
-      res.should_receive(:related_terms)
+      allow(res).to receive(:related_terms)
       Dinosaurus.related_to('normal')
+      expect(res).to have_received(:related_terms)
     end
   end
 
-  describe "similar_to" do
+  describe "#similar_to" do
     it "should return similar terms" do
-      res.should_receive(:similar_terms)
+      allow(res).to receive(:similar_terms)
       Dinosaurus.similar_to('normal')
+      expect(res).to have_received(:similar_terms)
     end
   end
 end
