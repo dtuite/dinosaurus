@@ -17,14 +17,12 @@ module Dinosaurus
       res = get(url_for(word))
 
       if res.code == 200
-        json = JSON.parse(res.body)
-        Dinosaurus::Results.new(json)
+        Dinosaurus::Results.new(JSON.parse(res.body))
       # Word does not exist.
       elsif res.code == 404
         Dinosaurus::Results.new
       else
-        warning = "DINOSAURUS_WARNING: #{res.code}. WORD: #{word}."
-        Logging.logger.warn(warning)
+        Logging.logger.warn("DINOSAURUS_WARNING: #{res.code}. WORD: #{word}.")
       end
     end
 

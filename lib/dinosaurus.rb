@@ -23,8 +23,7 @@ module Dinosaurus
   #
   # Returns an array.
   def self.synonyms_of(word)
-    results = lookup(word)
-    results.synonyms
+    lookup(word).synonyms
   end
 
   # Convenience method to retrieve antonyms of a +word+.
@@ -33,8 +32,7 @@ module Dinosaurus
   #
   # Returns an array.
   def self.antonyms_of(word)
-    results = lookup(word)
-    results.antonyms
+    lookup(word).antonyms
   end
 
   # Convenience method to retrieve similar terms to the
@@ -44,8 +42,7 @@ module Dinosaurus
   #
   # Returns an array.
   def self.similar_to(word)
-    results = lookup(word)
-    results.similar_terms
+    lookup(word).similar_terms
   end
 
   # Convenience method to retrieve terms which are
@@ -55,7 +52,6 @@ module Dinosaurus
   #
   # Returns an array.
   def self.related_to(word)
-    results = lookup(word)
-    results.related_terms
+    lookup(word).related_terms
   end
 end
